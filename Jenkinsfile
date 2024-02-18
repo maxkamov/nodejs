@@ -8,11 +8,11 @@ pipeline {
     IMAGE_TAG = 'latest'
     APP_NAME = 'test'
   }
-  stage('Initialize'){
+  stages {
+    stage('Initialize'){
       def dockerHome = tool 'myDocker'
       env.PATH = "${dockerHome}/bin:${env.PATH}"
-  }
-  stages {
+    }
     stage('Build') {
       steps {
         sh 'docker build -t $IMAGE_NAME:$IMAGE_TAG .'
